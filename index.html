@@ -936,6 +936,9 @@
     </div>
 	
 	
+	
+	
+	
 </div>
                                 </div>
                             </div>
@@ -1087,6 +1090,28 @@
             </div>
         </div>
     </div>
+	
+	
+	
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Launch and consolidation of B2B offer for a leading football club's Partners</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> the club was launching a "VIP Club" type of new proposition for Partners, whose goal was increasing the perceived value of the partnership and eventually become a standalone product. First year's enrolment was free for partners. Marketing support was needed both in the lead generation & qualification phases, and to promote the paid renewal after 1 year.</p>
+                <p><strong>Solution:</strong> The team led tagging activities both on the website and in-CRM, to score leads for the commercial departments and define their main interests. We planned and managed the communication calendar to sustain perceived value, and prevented disaffection acting jointly with the commercial force on early churn signs.</p>
+                <h5 style="font-size: 16px"><strong>Results</strong>:</h5>
+                <ul>
+				<li style="font-size: 16px">Lead qualification pipeline deployed in record time.</li>
+                    <li style="font-size: 16px">Paid renewal rate on year 1 over 85% (exceeding 80% target).</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+	
 	
 	
 </div>
@@ -1243,6 +1268,57 @@ explore synergies and define cross marketing plans</li>
                                         </div>
                                     </div>
                                     
+									
+									
+									
+									<button class="expand-btn" onclick="toggleAdditionalDetails('magnews-details', event)">
+                                        View Case Studies & Details
+                                    </button>
+                                    <div id="magnews-details" class="additional-details">
+    <h4>Featured Case Studies</h4>
+     <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Ecommerce automation pack design & deployment</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> The marketing automation module released by the company was strong, but adoption was slow and upskilling of clients was often needed; at the same time consultancy support was perceived as expensive.<br/> 
+				Magento and Shopify ecommerce enjoyed dedicated connectors facilitating the integration and reducing costs.</p>
+                <p><strong>Solution:</strong> We deployed a serie of essential marketing automation workflows that could be deployed automatically using a standardised data set for the clients using these ecommerce platform. Within the attractive price point we included specialised consultancy support for tailoring the parametrisation.</p>
+                <h5>Results:</h5>
+                <ul>
+                    <li>Package was well received and sold in approximately every 1 in 3 purchases of the automation module.</li>
+                    <li>The introduction of subsidised consultancy hours in the packaging proved to be a strong case to show the value of the service and the model was extended to the vast majority of technical or product implementations.</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Loyalty plan participation analysis for leading Food & beverage company. </h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> The client owned several brands, each one running a different loyalty program on different system. They needed consultancy support to understand risks and opportunities.</p>
+                <p><strong>Solution:</strong> We undertook a complete participation analysis to understand which programs were more successfull in terms both of participations and sustaining clients loyalty. Overlaps of databases were analysed, and similarities\differences of clients composition between the various brands highlighted.</p>
+                <h5>Results:</h5>
+                <ul>
+                    <li>We recognised which brands were naturally fit for cross selling, suggesting the creation of a shared tier of the loyalty programs to further promote audience contamination.</li>
+                    <li>We highlighted which brands were ideally entry points for the most valuable target segments for the client, the ideal "contamination paths", and suggested a communication strategy adapted to each segment to promote cross-brand passage. This led to an extension of the contract's scope to jointly deploy the communication strategy.</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+									
+									
+									
                                    
                                 </div>
                             </div>
@@ -1745,11 +1821,21 @@ explore synergies and define cross marketing plans</li>
         }
 
         function toggleJob(jobElement) {
-            if (event.target.closest('.expand-btn')) {
-                return;
-            }
-            jobElement.classList.toggle('expanded');
+    if (event.target.closest('.expand-btn')) {
+        return;
+    }
+    
+    // Close all other expanded jobs
+    const allJobs = document.querySelectorAll('.job.expanded');
+    allJobs.forEach(job => {
+        if (job !== jobElement) {
+            job.classList.remove('expanded');
         }
+    });
+    
+    // Toggle the clicked job
+    jobElement.classList.toggle('expanded');
+}
 
         function toggleAdditionalDetails(detailsId, event) {
             if (event) {
@@ -1815,6 +1901,7 @@ explore synergies and define cross marketing plans</li>
 	
 </body>
 </html>
+
 
 
 
