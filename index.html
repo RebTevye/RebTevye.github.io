@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta content="noindex" name="robots">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9C1SFYKES"></script>
 <script>
@@ -754,6 +754,7 @@
 </script>
 </head>
 <body>
+<div id="cv-content" style="display: none;">
     <div class="container">
         <div class="header">
             <h1 class="name">Andrea Castelli</h1>
@@ -1813,7 +1814,7 @@ explore synergies and define cross marketing plans</li>
             </div>
         </div>
     </div>
-
+</div>
     <script>
         function toggleSection(element) {
             const section = element.parentElement;
@@ -1898,7 +1899,27 @@ explore synergies and define cross marketing plans</li>
     caseStudyElement.classList.toggle('expanded');
 }
     </script>
-	
+	<script>
+// Get the token 
+const urlParams = new URLSearchParams(window.location.search);
+const providedToken = urlParams.get('magicword');
+
+// Your secret token  
+const validToken = 'cv-access-20250907';
+
+if (providedToken === validToken) {
+    // Token is correct - show the CV
+    document.getElementById('cv-content').style.display = 'block';
+} else {
+    // Wrong/missing token - show access denied
+    document.body.innerHTML = `
+        <div style="text-align: center; margin-top: 100px;">
+            <h1>Access Denied</h1>
+            <p>This CV is accessible only to a selected few invitees :)</p>
+        </div>
+    `;
+}
+</script>
 </body>
 </html>
 
