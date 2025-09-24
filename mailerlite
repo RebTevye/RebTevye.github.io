@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W9C1SFYKES"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W9C1SFYKES');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrea Castelli - Interactive Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e5e5;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 3px solid #333;
+        }
+
+        .name {
+            font-size: 2.8em;
+            font-weight: 300;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            font-size: 0.9em;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-item:hover {
+            opacity: 1;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            border-bottom-color: white;
+        }
+
+        .content {
+            padding: 0;
+            background: white;
+            flex: 1;
+        }
+
+        .section {
+            border-bottom: 1px solid #e5e5e5;
+            background: white;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            padding: 25px 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .section-header:hover {
+            background: #f8f8f8;
+            border-left-color: #333;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .toggle-icon {
+            font-size: 1em;
+            color: #666;
+            transition: transform 0.3s ease, color 0.2s ease;
+            font-weight: 300;
+        }
+
+        .section.expanded .toggle-icon {
+            transform: rotate(180deg);
+            color: #333;
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fdfdfd;
+        }
+
+        .section.expanded .section-content {
+            max-height: 5000px;
+        }
+
+        .section-inner {
+            padding: 40px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .summary-text {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .job {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .job:hover {
+            background: #f5f5f5;
+            border-color: #e0e0e0;
+        }
+
+        .job.expanded {
+            cursor: default;
+            background: #fafafa;
+        }
+
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .job-logo {
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .job-info {
+            flex-grow: 1;
+        }
+
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-size: 1.15em;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+
+        .company {
+            color: #666;
+            font-weight: 400;
+            font-size: 0.95em;
+        }
+
+        .duration {
+            color: #999;
+            font-size: 0.85em;
+            font-weight: 400;
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        .job-details {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e8e8e8;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .job.expanded .job-details {
+            display: block;
+        }
+		.case-study {
+    margin: 15px 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.case-study-header {
+    padding: 15px 20px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #e8e8e8;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+
+.case-study-header:hover {
+    background: #f0f0f0;
+}
+
+.case-study-title {
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.case-study-toggle {
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.case-study.expanded .case-study-toggle {
+    transform: rotate(180deg);
+}
+
+.case-study-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+}
+
+.case-study.expanded .case-study-content {
+    max-height: 1000px;
+}
+
+.case-study-inner {
+    padding: 20px;
+}
+
+.case-study p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .skills-chart {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 1px solid #e8e8e8;
+        }
+
+        .skills-chart h5 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .skills-grid-compact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 30px;
+        }
+
+        .skill-item {
+            position: relative;
+            padding: 8px 12px;
+            background: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            cursor: help;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .skill-item:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+            transform: translateY(-1px);
+        }
+
+        .skill-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            margin-bottom: 5px;
+        }
+
+        .skill-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: #1a1a1a;
+        }
+
+        .skill-item:hover .skill-tooltip {
+            opacity: 1;
+        }
+
+        .job.expanded .skill-bar-fill {
+            width: var(--skill-width) !important;
+        }
+
+        .skill-percentage {
+            font-size: 0.75em;
+            color: #666;
+            width: 35px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .job-description {
+            margin-top: 20px;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-description li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .job-description li::before {
+			content: '»';
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+            font-weight: 300;
+			
+
+        }
+
+        .expand-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.85em;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .expand-btn:hover {
+            background: #333;
+        }
+
+        .expand-btn:active {
+            transform: translateY(1px);
+        }
+
+        .additional-details {
+            margin-top: 25px;
+            padding: 25px;
+            background: #f8f8f8;
+            border: 1px solid #e8e8e8;
+            border-left: 3px solid #333;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .additional-details.show {
+            display: block;
+        }
+
+        .additional-details h4 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .additional-details h5 {
+            color: #333;
+            margin: 20px 0 10px 0;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .additional-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .additional-details li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .additional-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            padding: 0;
+        }
+
+        .skill-category h4 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            font-weight: 500;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: #f0f0f0;
+            color: #333;
+            padding: 6px 14px;
+            font-size: 0.85em;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+            font-weight: 400;
+        }
+
+        .skill-tag:hover {
+            background: #e5e5e5;
+            border-color: #ccc;
+        }
+
+        .languages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .language {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .language h4 {
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .language p {
+            color: #666;
+            font-weight: 400;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .cert-item {
+            padding: 25px;
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .cert-badge {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 15px auto;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            cursor: help;
+        }
+
+        .cert-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cert-tooltip {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            min-width: 200px;
+            text-align: center;
+            white-space: normal;
+        }
+
+        .cert-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1a1a1a;
+        }
+
+        .cert-badge:hover .cert-tooltip {
+            opacity: 1;
+        }
+
+        .cert-item h4 {
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 1em;
+        }
+
+        .cert-item p {
+            color: #666;
+            margin-bottom: 4px;
+            font-size: 0.95em;
+        }
+		.cert-link-btn {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.cert-link-btn:hover {
+    background: #333;
+    color: white;
+    text-decoration: none;
+}
+
+        .cert-item small {
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        .expand-indicator {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 0.8em;
+            color: #999;
+            font-weight: normal;
+        }
+
+        .job:not(.expanded) .expand-indicator::after {
+            content: '▶ Click to expand';
+        }
+
+        .weather-tooltip {
+            position: absolute;
+            background: #1a1a1a;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .weather-tooltip.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-item.valencia {
+            position: relative;
+            cursor: help;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .name {
+                font-size: 2.2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .section-header,
+            .section-inner {
+                padding: 20px;
+            }
+            
+            .skills-grid,
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .job-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+<!-- Hotjar Tracking Code for https://www.andreacastelli.me/?magicword=cv-access-20250907 -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:6517234,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+</head>
+<body>
+<div id="cv-content" style="display: none;">
+    <div class="container">
+        <div class="header">
+            <h1 class="name">Andrea Castelli</h1>
+            <p class="title">Senior CRM Manager – Digital Strategist & Analyst</p>
+            <div class="contact-info">
+                <div class="contact-item"><a href="tel:+34634478368" target="_blank">+34 634478368</a></div>
+                <div class="contact-item"><a href="mailto:castellindr@gmail.com" target="_blank">castellindr@gmail.com</a></div>
+                <div class="contact-item valencia" onmouseenter="showWeather(this)" onmouseleave="hideWeather()">Valencia, Spain</div>
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/andrea-castelli-crm/" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Summary Section -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <p class="summary-text">
+                            A strategic and results-driven CRM Marketing Leader with 12 years of experience designing and executing data-driven lifecycle strategies to accelerate revenue growth and customer acquisition. Adept at full-funnel journey orchestration, defining critical KPIs, and leveraging advanced martech stacks to enhance customer retention. A tenacious and creative leader with a proven ability to translate complex data into actionable insights and deliver measurable business results.
+                        </p>
+                        <!--<button class="expand-btn" onclick="toggleAdditionalDetails('summary-details', event)">
+                            View Key Achievements
+                        </button>
+                        <div id="summary-details" class="additional-details">
+                            <h4>Key Achievements Highlights</h4>
+                            <ul>
+                                <li><strong>+104% CRM Revenue Growth:</strong> Delivered exceptional year-over-year growth through strategic segmentation and automation optimization</li>
+                                <li><strong>Global Team Leadership:</strong> Built and coordinated international teams across EMEA, LATAM, and APAC regions</li>
+                                <li><strong>Multi-Channel Expertise:</strong> Orchestrated omnichannel campaigns across 10+ marketing platforms</li>
+                                <li><strong>Client Portfolio Value:</strong> Managed Tier 1 clients with combined annual marketing spend exceeding €2M</li>
+                            </ul>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Experience -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        
+                        <!-- Current Job - Lead CRM Strategist -->
+                        <div class="job" onclick="toggleJob(this)">
+                            <div class="job-header">
+                                <div class="job-logo" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnAc0Q4vyHN2sLt0R-AKc2KXLtfvuFVPkPTQ&s')"></div>
+                                
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Lead CRM Strategist <span class="expand-indicator"></span></div>
+                                            <div class="company">Massive Rocket | London, UK (remote)</div>
+                                        </div>
+                                        <div class="duration">October 2024 - Present</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details">
+                                
+                                
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Development of a new CRM consultancy offering leading to the acquisition of new Tier 1 clients</li>
+                                        <li><strong>CRM strategy lead for key agency clients</strong>, in charge of strategy planning and overseeing operational deployment</li>
+                                        <li><strong>Creation and coordination a global team of five</strong> (EMEA, LATAM, APAC) to provide clients a centralised digital strategy approach</li>
+                                        <li>Coordinated the <strong>launch of a new loyalty program for a leading UK fast food chain</strong>, exceeding registrations and revenue targets</li>
+                                        <li>Development of business case and a deployment plan to lead each market of a leading QSR actor on a path toward digital maturity, progressively onboarding on it 12 new countries across two brands</li>
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM Strategy
+                                                <div class="skill-tooltip">Strategy planning and deployment for key agency clients</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Team Leadership
+                                                <div class="skill-tooltip">Team creation and management across multiple regions</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Client Management
+                                                <div class="skill-tooltip">Tier 1 clients' relationship management and retention</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Loyalty Programs
+                                                <div class="skill-tooltip">Loyalty programs launch management e reporting.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Data Analysis
+                                                <div class="skill-tooltip">KPIs definition and dashboard design. Data interpretation.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Marketing Automation
+                                                <div class="skill-tooltip">Full management from the case definition to data planning and deployment.</div>
+                                            </div>
+											<div class="skill-item">
+                                                Sales assistance
+                                                <div class="skill-tooltip">Sales material preparation and active assistance in sales pitches.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Workshops management
+                                                <div class="skill-tooltip">Workshop agenda definition, workshop facilitation</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="expand-btn" onclick="toggleAdditionalDetails('massive-rocket-details', event)">
+                                        View Case Studies & Details
+                                    </button>
+                                    <div id="massive-rocket-details" class="additional-details">
+    <h4>Featured Case Studies</h4>
+    
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">UK Fast Food Chain Loyalty Launch</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> the complete redesign of a QSR's established loyalty program set to launch in 4 months presented specific CRM challenges and ambiguities to be solved.</p>
+                <p><strong>Solution:</strong> The team took center stage in the definition of the MVP, defined data needs and managed QA independently, designed and deployed critical multichannel automation flows, and coordinated cross-functional teams.</p>
+                <h5 style="font-size: 16px"><strong>Results</strong>:</h5>
+                <ul>
+				<li style="font-size: 16px">Successful launch by the initially defined target date.</li>
+                    <li style="font-size: 16px">Exceeded Q1 registration targets by 15%, thanks for the multichannel comms plan.</li>
+                    <li style="font-size: 16px">Surpassed purchase frequency goals for first 3 months sustained by a 10% increase on active members due to new "earn and burn" workflows</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Global Team Coordination & Process Standardization</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> Coordinate a distributed team across three continents while maintaining consistent service quality and strategic alignment.</p>
+                <p><strong>Solution:</strong> Implemented standardized processes, defined clear KPIs, and created scalable operating models for client onboarding and management.</p>
+                <h5 style="font-size: 16px"><strong>Results:</strong></h5>
+                <ul>
+				<li style="font-size: 16px">Defined a brand new set of services: auditing, workshops, marketing automation, competitor benchmarking</li>
+                    <li style="font-size: 16px">Established standardized internal processes for global clients</li>
+                    <li style="font-size: 16px">Defined KPIs and performance metrics for members of the distributed team</li>
+                    <li style="font-size: 16px">Efficiency and standardisation allowed a smaller team to effectively manage a wide client pool presenting a compelling business case for the agency</li>
+                    <li style="font-size: 16px">Clients followed registered a 100% contract renewal date.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Multi Market Digital Strategy</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> A key client is active on many markets with 3 different brands. Each localisation have a different maturity level and manages digital activity in relative autonomy, with lack of standardisation.</p>
+                <p><strong>Solution:</strong> Build a business case to show CRM profitability evolution, achieve savings by standardising and sharing tools, leverage efficiency by standardising reporting and by building a standardised lifecycle management model for Foundational, Intermediate, Advanced maturity levels.</p>
+                <h5 style="font-size: 16px"><strong>Results:</strong></h5>
+                <ul>
+                    <li style="font-size: 16px">Successfully onboarded 12 markets on the model</li>
+                    <li style="font-size: 16px">Model itself is being standardised to be provided "as a service" at large.</li>
+                    <li style="font-size: 16px">Technology savings on martech licences of approx 15% (not counting operational savings)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+	
+	
+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Senior CRM Consultant -->
+                        <div class="job" onclick="toggleJob(this)">
+                            
+							<div class="job-header">
+                                <div class="job-logo" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoCIO71F9jiPxM0zzBzQqYn2oCDr7rWA3d8w&s')"></div>
+                                
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Senior CRM Consultant - Client Director <span class="expand-indicator"></span></div>
+                                            <div class="company">Winners FDD | Manchester, UK (remote)</div>
+                                        </div>
+                                        <div class="duration">August 2019 - September 2024</div>
+                                    </div>
+                                </div>
+                            </div>
+							
+							
+							
+							
+                            
+                           <div class="job-details">
+                 
+				 
+                                 <div class="job-description">
+                                    <ul>
+                                        <li>In July 2020 I was <strong>promoted to the Senior Management Team</strong> and became co-responsible for agency’s management and strategic direction.</li>
+                                        <li><strong>Management of agency’s key clients</strong>, directly handling or overseeing all operations and managing contract renewals.</li>
+                                        <li><strong>SCV definition</strong>:  planning the centralisation of all customers' data in a centralised view, and managing the multi-disciplinary teams responsible for its operations, and the relationships with external stakeholders.</li>
+										<li>Management of the <strong>RFP process for the selection of new technology</strong> (omnichannel marketing platform & CDP), and planning and management of MarTech implementation.</li>
+                                        <li>Building on the SCV, <strong>deployment of  a full range of multichannel lifecycle campaigns</strong> for our main clients serving all business stakeholders, leading to leading to an <strong>increase of managed channels’ revenue share from less than 2% to over 10%</strong> in the two main revenue-generating outlets.</li>
+                                        <li>Analysis of the current acquisition efforts of a top client and <strong>deployment of a new acquisition plan achieving 5 years of database growth</strong>.</li>
+										<li>Supporting setup and management of Magento and Shopify based ecommerce site, including catalog management & marketing operations.</li>
+										<li>Definition of the KPIs to represent and the needed data model for a <strong>full set of dashboards</strong>, representing data for CRM  & digital performances, customers’ segment migration and video streaming usage.</li>
+										
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM Strategy & Execution
+                                                <div class="skill-tooltip">Strategy planning and deployment for key agency clients</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Team Leadership
+                                                <div class="skill-tooltip">Cross functional team leadership</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Customer Acquisition
+                                                <div class="skill-tooltip">Acquisition auditing, planning and deployment of acquisition plans.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Data Analysis & visualisation
+                                                <div class="skill-tooltip">KPIs definition and dashboard design. Data interpretation.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                CRM Execution
+                                                <div class="skill-tooltip">Hands on CRM execution for clients.</div>
+                                            </div>
+											<div class="skill-item">
+                                                Marketing automation
+                                                <div class="skill-tooltip">In simple words, my main CRM area of strenght.</div>
+                                            </div>
+											<div class="skill-item">
+                                                Sales assistance
+                                                <div class="skill-tooltip">Sales material preparation and active assistance in sales pitches.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Performance marketing
+                                                <div class="skill-tooltip">Planning and hands-on management of paid social budgets for two key clients</div>
+                                            </div>
+											<div class="skill-item">
+                                                Client Management
+                                                <div class="skill-tooltip">Clients' relationship management and retention, contract renewals.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Agency management
+                                                <div class="skill-tooltip">Central role in agency's decision-making.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="expand-btn" onclick="toggleAdditionalDetails('winners-details', event)">
+                                        View Case Studies & Details
+                                    </button>
+                                    <div id="winners-details" class="additional-details">
+    <h4>Featured Case Studies</h4>
+    
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Football Club acquisition strategy</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> the club's database had been reduced in an effort to ensure compliance and was devoid of useful data.</p>
+                <p><strong>Solution:</strong> We redefined the consent framework and took an holistic approach to data acquisition. We progressively integrated all the data sources into a central repository, deployed on and off-site lead generation campaigns, developed an own competition platform and then transitioned to an enterprise-level one, and in general looked at every interaction as a potential data capture opportunity.</p>
+                <h5 style="font-size: 16px"><strong>Results</strong>:</h5>
+                <ul>
+				<li style="font-size: 16px">Over 1100% database increase in 5 years.</li>
+                    <li style="font-size: 16px">Over the course of the first three years, all sources had been integrated into the SCV and microservices were developed to facilitate further integrations.</li>
+                    <li style="font-size: 16px">Data enrichment plan deployed, further supported by SSO implementation we assisted with.</li>
+					<li style="font-size: 16px">Together with the contact plan overhaul, this made CRM the first non-direct revenue source for ticketing and ecommerce</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Video streaming and subscription business model change</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> A client was merging two different publications into a single freemium model. The merge was to be managed and the migration of users from one of the brands (free) to the new one (freemium) was to be communicated to effectively promote the new paid tier.</p>
+                <p><strong>Solution:</strong> We advised to offer a free trial, and pre-produced material introducing both the new, high production-value shows & content, while also preparing a communication plan teasing what was already planned for the calendar year.</p>
+                <h5 style="font-size: 16px"><strong>Results:</strong></h5>
+                <ul>
+				<li style="font-size: 16px">Migration was completed successfully also from the CRM side, with the merge of the two databases in the same MarTech workspace enabling a more efficient resource usage.</li>
+                    <li style="font-size: 16px">15% of migrated user signed up for a heavily discounted extension of the trial, finalised  to obtain card number and facilitate further renewals. While more subscribers were added after the initial deadline, this was already almost twice the target.</li>
+                    <li style="font-size: 16px">Deployed lifecycle management workflow working across transactional and marketing communications.</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">NPS tracking process for a leading Cycling Team</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> In a period of constitutional change, a cycling team needed to deploy a reliable system for tracking NPS variation across the world-spanning customer base to assess reputational risk efficiently.</p>
+                <p><strong>Solution:</strong> We co-created the rules governing the panel composition to be meaningful for the client and to allow for direct reactive action, and prepared surveys assessing the most critical parameter for the client. The results were collated quarter-by-quarter and the variations graphically presented so the client could follow the key metric trends and undergo reparation. This proved useful to identify both what fact was affecting reputation, to which degree, in which geographical area and the potential severity of the impact. This, in turn, oriented the communication plan for the quarter.</p>
+                <h5 style="font-size: 16px"><strong>Results:</strong></h5>
+                <ul>
+                    <li style="font-size: 16px">Successfully deployed an automated initiative requiring minimal ad-hoc work to maintain</li>
+                    <li style="font-size: 16px">Managed to swiftly assess and limit impacts of events on key markets. NPS bounced back within 3% of baseline in quarter after a hit was recorded in key markets.</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Launch and consolidation of B2B offer for a leading football club's Partners</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> the club was launching a "VIP Club" type of new proposition for Partners, whose goal was increasing the perceived value of the partnership and eventually become a standalone product. First year's enrolment was free for partners. Marketing support was needed both in the lead generation & qualification phases, and to promote the paid renewal after 1 year.</p>
+                <p><strong>Solution:</strong> The team led tagging activities both on the website and in-CRM, to score leads for the commercial departments and define their main interests. We planned and managed the communication calendar to sustain perceived value, and prevented disaffection acting jointly with the commercial force on early churn signs.</p>
+                <h5 style="font-size: 16px"><strong>Results</strong>:</h5>
+                <ul>
+				<li style="font-size: 16px">Lead qualification pipeline deployed in record time.</li>
+                    <li style="font-size: 16px">Paid renewal rate on year 1 over 85% (exceeding 80% target).</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Digital Strategist -->
+                        <div class="job" onclick="toggleJob(this)">
+                            
+							<div class="job-header">
+                                <div class="job-logo" style="background-image: url('https://aboutagency.it/wp-content/uploads/2020/01/about_logo_black-1.png')"></div>
+                                
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Digital Strategist <span class="expand-indicator"></span></div>
+                                            <div class="company">About The Prosumer Agency | Milan, Italy</div>
+                                        </div>
+                                        <div class="duration">August 2018 - August 2019</div>
+                                    </div>
+                                </div>
+                            </div>
+							
+							
+                            
+                            <div class="job-details">
+                               
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Management of activities for the agency’s top client (40% of time in client’s premises)</li>
+                                        <li>Audit and refinement of high-volume multichannel contact strategy, introducing push notification (web &
+mobile) and refining email and offline activities</li>
+                                        <li>Introduction of sponsored assets within an existing loyalty program, generating extra income for the department from
+suppliers without altering the current loyalty communication strategy. This was key to be able to invest in the program itself.</li>
+                                        <li>Refinement of campaign attribution criteria (online to offline) to internally calculate CRM’s department impact –
+functional to budget negotiation for the department</li>
+                                        <li>Development and deployment of a subscription-like approach to charity donation for a client without a regular giving schema.</li>
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM & Digital Strategy
+                                                <div class="skill-tooltip">Digital marketing planning and execution</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Loyalty
+                                                <div class="skill-tooltip">Auditing and improvement to the mechanics of a vast, popular loyalty program for a leading retail actor in the DYI space.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Client Management
+                                                <div class="skill-tooltip">Top client relationship management and retention</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Chatbot deployment
+                                                <div class="skill-tooltip">In pre-LLM era, we deployed a chatbot leveraging Dialogflow infrastructure that allowed non-scripted communication and limited pattern recognition.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Data Analysis
+                                                <div class="skill-tooltip">Customer data interpretation and actionable insights</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Multichannel orchestration
+                                                <div class="skill-tooltip">Implementation of app push & IAM notifications within the existing campaigning framework for our top client.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="expand-btn" onclick="toggleAdditionalDetails('about-details', event)">
+                                        View Case Studies & Details
+                                    </button>
+                                    <div id="about-details" class="additional-details">
+    <h4>Featured Case Studies</h4>
+    
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Loyalty CRM plan impact analysis and funding</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> The funding for the loyalty plan did not essentially allow for further initiatives, the team had to resort to their own means to create resources.</p>
+                <p><strong>Solution:</strong> We adopted a two pronged approach. Long term, we agreed with Finance a shared attribution criteria to assess the impact of the loyalty program, and we deployed it. This allowed for a common ground for budget negotiation. Medium term we launched a new revenue-generative initiative aimed at partnets. We deployed a product-vertical weekly communication aimed at people with high purchase intent on a product family, and we invited partner to sponsor it. Sponsoring would allow partners to buy a spot in such communication.</p>
+                <h5>Results:</h5>
+                <ul>
+                    <li>Managed to fund the pilots of a whatsapp communication and a store initiative aimed at retaining and expanding business with professional audience</li>
+                    <li>High uptake of sponsors allowed for a 20% price rise, and the creation of a waiting list for partners</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email Marketing Consultant -->
+                        <div class="job" onclick="toggleJob(this)">
+                            <div class="job-header">
+                                <div class="job-logo" style="background-image: url('https://media.licdn.com/dms/image/v2/C4E0BAQF1FuITR5pfSw/company-logo_200_200/company-logo_200_200/0/1630633666412/diennea_logo?e=2147483647&v=beta&t=cCWeHF1022-_Rb0SNYh2eqcCKr9wqxh_NIslOXfQA6g')"></div>
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Email Marketing Consultant <span class="expand-indicator"></span></div>
+                                            <div class="company">Diennea MagNews | Milan, Italy</div>
+                                        </div>
+                                        <div class="duration">July 2016 - August 2018</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details">
+                                 
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Consultant working transversally across the martech firm's clients to <strong>improve client value, features' adoption</strong> and assisting with business development</li>
+                                        <li>Managing the strategic and operational tasks for the <strong>implementation of marketing automation projects</strong></li>
+                                        <li>Development of courses on <strong>Marketing Automation and Customer Experience Mapping</strong> for the agency's client base</li>
+                                        <li>Management of analytics projects, including the <strong>analysis of user’s interactions within multi-brand loyalty programs</strong> to
+explore synergies and define cross marketing plans</li>
+                                        <li>Assisted the product team in the development of a <strong>new web tracking & personalisation product</strong>, defining the first use case</li>
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM Strategy & Execution
+                                                <div class="skill-tooltip">End-to-end customer lifecycle planning and execution</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Experience Mapping
+                                                <div class="skill-tooltip">Development of courses and lead of experience mapping workshops</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Client Management
+                                                <div class="skill-tooltip">Client relationship management and retention</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Ecommerce
+                                                <div class="skill-tooltip">Strong focus on ecommerce business, largely magento based.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Data Analysis
+                                                <div class="skill-tooltip">Customer data interpretation and actionable insights</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Marketing Automation
+                                                <div class="skill-tooltip">Core area of work, with specific attention to ecommerce businesses. </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+									
+									
+									
+									<button class="expand-btn" onclick="toggleAdditionalDetails('magnews-details', event)">
+                                        View Case Studies & Details
+                                    </button>
+                                    <div id="magnews-details" class="additional-details">
+    <h4>Featured Case Studies</h4>
+     <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Ecommerce automation pack design & deployment</h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> The marketing automation module released by the company was strong, but adoption was slow and upskilling of clients was often needed; at the same time consultancy support was perceived as expensive.<br/> 
+				Magento and Shopify ecommerce enjoyed dedicated connectors facilitating the integration and reducing costs.</p>
+                <p><strong>Solution:</strong> We deployed a serie of essential marketing automation workflows that could be deployed automatically using a standardised data set for the clients using these ecommerce platform. Within the attractive price point we included specialised consultancy support for tailoring the parametrisation.</p>
+                <h5>Results:</h5>
+                <ul>
+                    <li>Package was well received and sold in approximately every 1 in 3 eligible purchases of the automation module.</li>
+                    <li>The introduction of subsidised consultancy hours in the packaging proved to be a strong case to show the value of the service and the model was extended to the vast majority of technical or product implementations.</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="case-study" onclick="toggleCaseStudy(this)">
+        <div class="case-study-header">
+            <h5 class="case-study-title">Loyalty plan participation analysis for leading Food & beverage company. </h5>
+            <span class="case-study-toggle">▼</span>
+        </div>
+        <div class="case-study-content">
+            <div class="case-study-inner">
+                <p><strong>Challenge:</strong> The client owned several brands, each one running a different loyalty program on different system. They needed consultancy support to understand risks and opportunities.</p>
+                <p><strong>Solution:</strong> We undertook a complete participation analysis to understand which programs were more successfull in terms both of participations and sustaining clients loyalty. Overlaps of databases were analysed, and similarities\differences of clients composition between the various brands highlighted.</p>
+                <h5>Results:</h5>
+                <ul>
+                    <li>We recognised which brands were naturally fit for cross selling, suggesting the creation of a shared tier of the loyalty programs to further promote audience contamination.</li>
+                    <li>We highlighted which brands were ideally entry points for the most valuable target segments for the client, the ideal "contamination paths", and suggested a communication strategy adapted to each segment to promote cross-brand passage. This led to an extension of the contract's scope to jointly deploy the communication strategy.</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+									
+									
+									
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email Marketing Manager -->
+                        <div class="job" onclick="toggleJob(this)">
+                            <div class="job-header">
+                                <div class="job-logo" style="background-image: url('https://volunteers.mssociety.org.uk/sites/default/files/resources/2024/05/MS_Society_logo_Orange_RGB%20%281%29.jpg')"></div>
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Email Marketing Manager <span class="expand-indicator"></span></div>
+                                            <div class="company">MS Society UK | Cricklewood, UK</div>
+                                        </div>
+                                        <div class="duration">November 2015 - June 2016</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details">
+                                 
+                                
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Auditing and defining the company email marketing and eCRM strategy (email, sms, mobile app)</li>
+                                        <li>Managing the RFP and onboarding with the new marketing provider in line with company objectives (Silverpop)</li>
+                                        <li>Implementing lifecycle management campaigns and behavioural triggers.</li>
+                                        <li>Coordinated the <strong>launch of a new loyalty program for a leading UK fast food chain</strong>, exceeding registrations and revenue targets</li>
+                                        <li>Providing training across the organisation, making sure the company is Data Protection compliant</li>
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM Strategy
+                                                <div class="skill-tooltip">Full scale CRM program planning & Execution</div>
+                                            </div>
+                                             
+                                             
+                                            <div class="skill-item">
+                                                Donors' stewardship
+                                                <div class="skill-tooltip">Lifecycle management for leads, donors, regular givers</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Data Analysis
+                                                <div class="skill-tooltip">Data interpretation and actionable insights</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Marketing Automation
+                                                <div class="skill-tooltip">Automated campaign orchestration and optimization</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+						
+						
+						
+						
+						
+						 <!-- Email Marketing Officer -->
+                        <div class="job" onclick="toggleJob(this)">
+                            <div class="job-header">
+                                <div class="job-logo" style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASUAAACsCAMAAAAKcUrhAAAAllBMVEURERH///8AAADlAXEAEQ3rAHQAEQiOEklcEDANDQ3v7+8YGBgFBQXY2NjCwsKYmJjn5+eSkpJycnKLi4unp6c6Ojr4+PgZGRnx8fEgICCfn5+3t7fJycnp6ekoKChaWlre3t5KSkovLy/Hx8eGhoZGRkZnZ2dvb2+wsLBdXV17e3scEhVQUFA3NzcmJiaREksdERY7ESL8fRlvAAAJ20lEQVR4nO2d6ZqquBZASfr0EAiIEyKChZZa6tXqe9//5e7eIWEQsKqOnDb19V4/+rQYhiwza+04DkEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQxLeAd/Jh6p7j4vOnAKLjzvLB/PwS+IjdEvuzU2d+IXWk07w288xTfWr7NH7WpyQtTULmjRtHYbra7Xtu/VT4uGUJSV86n5W7JsFbI888KI6GHZYm+oxRhyW/feco2K17i/Kz6LHE2LTrUStL2bpeNQa0BPjWaeq11KmpssSCupBhLbHYsUxTvyW2az9qzVKjzg1sieVLu9qmO5bieau/qVtya0aGttSR+KkYS5GfFrxm5aPOWo9at1R/+0FL8au6dRZXH8HVqhGBsZRXI5a96e5jeZvnhiV2KfP9oKXA3PqSmHufrSpMxlIoTP4E35vP9NAaPDYs+Y4552FLxWsYZSa95fiZtC3VRpqtjDUtVd3gMJbw0CK7PWQDnZYufR/ojSW21wkGs+Tw/NuUpU30SUumzg1Xlrzs21gyGWtNvYyl3LRcus4NZonP9ZVtb70dLvTcNXrps7SaskaSofo4vgmLI9nW9pHAWmf5zkgg4GY86A9hyT+8AZPdNDVV2a6iVFrKJueC6bEcVq56R5UBfzEDGzWPGXyG4nybGUq0752hQBUp16U8Obgl37Gqvv3sbDfgYm2K3BHMDGwp7V8sfQ79ltJWq1S3VA2q2IQPXuP8vV2aei0FXaW+ZqlcxWWhJwZfE3DfrapzPZby890VXbQkl6bOQSv1mKXI11TrEalVq9/dlmZOz7cDNUvVuj/Mih8dLy0LrvOjGa9aNRYwluJkBJga0DfXbFgSfMWMnEctiQIp+UUPMXybClNzVHk1n+SmW1PDEtQ5k/y4etBSLf1Rp3+30FIxQ+Ez/Yj+4uMaBy/fdPIoG86Sqcc2rVY2Lcm1nkexcWdhurFU9m2GISy96PStJcAncjPbLfPU/L6tTN20BFabSylDWDLpT/ZaqkZBnQ34rSWHm8WBoSxVxfNis6WDyfFbx1O2LInS6hCWcOG71G5vu4QHqjWRuzMUc2QzgKWVXrNZLN/K0XjWMUF6Gm1Lc9abrQ5LzR+tDDZDwUn0kNl8kPZaZTkaj9tTzg5Lwqv9vGY4Sx03fyJd38eZBbb+73YbnZIZLQ9qaWKTpM5172nvo3ZZqte5wSy1fxL2VDosld/2sOw2052WBC/r3ECWstbXEk+m85umnXnc24k5jzssOfxk6lxL689Yisf2/cprGmeA63tV/oQ4upk6mm+agxaeqzfcmw6Ij3X6jlUhfsiK9zosOWlxXokfHHcbC39YKbyFhywaB2Vx0FsublKbxDf5MOm9rvzpc7re85os8Ee7No2TSvTKjug82Hrgrx7/4D1xy8/mgiAIgiAIgiAIgiAIgiAIgiAIYlh+/GEpzxZT58dff/9pJX8/20ydP/783VL++2w1NcDSb1by+3+eraYGWfoMZOkzkKXPYK8lm1pv539/WcqzxTT5YSnP9kIQBEEQBEEQBEEQBEEQBEH8a1A74Ji/HxVm45y+zXU+hbB0V50Kyb/4R8WTyUUKUZwhxFsSHN+4ww/jYDbp/PvmjxHL87kdatUiJL+ezueX/aezJxYYq4XPcv8iTZC0gBdBCLL11ywJvX+TnPeFD7MDuTxGPVERekBLM85fVbgtDPcRzVYjFQo1OB6/FvNOzHe7ExYhtNS5m48dFOE34vALkf61pVnob6SD0RjPWGOnGBblq+0SulURHCy3hLnzT/vty/SsM1j/o/6OP/AX2pJYrqHcCJEyF9si3HzCxChrniUa/zQv/G0sHRm7cil1+wDthFeWCF68qKfmfAkHVdAh1bNxDpag6VeRrIuuT73iOnWRCvuHZXFZbIhEcRwTXFWx5KKwJOq3tikCAwY4W1bxyzzctsUfqe6LnzDmm18L8MknWD0DobKWYrukA7isdXS4i+Re4DIWYtRrHoDAi892nG9xm5PwzAVuGefzKdwkhsMmUAw8gbIEtT9cmriZP9lb/hKwLJVRc/kFLLhuESUe61Dsxiwso2qpXMHbsbIU4KYDIYYaivPlKoaMu9me76GFy1xVj6DJyvcuxgnHLRfgStBBYJicPGcRxt458YP613UjT1s6MIZBhQR37YrApELjp4eigKumeL6dYUhNCZUh31w3edms8z2Gj7puJ2FlaT73WbzZyu0WbG+uHvR80XS7DRibS7haHLNs9oLd4e66T1i04RhMKD9c4AV75csraAm28zkvapzcRiqAmLFlD0XAsngspYoXmGBDkhfBqGNsYuBtHRMRq8FKNWGVJQm5duFUgSXvnfMTDnsghY9xA8F5/oIbU2B5AlABliU1SAfV0A5t8FJwvm694RTcSgwKuG+VJCxNMyz3+VKCBvy0sRCkUvigCv5/EZtYVZgx3CxNjwSUJeGAJUf3cWvlSuJZAWQTLWGTB3mON8XBAC2pEI9YvjyBfdys1sdhnX7jwrMu5Bk8sDPHgF6+h9kKMRh5yEJvjduAArl5YiEzlmMQ4nuW4Ao6nLmPshmmxw4ix4MuFCO0hH0DhjhdtCw5PEO9BxbbN10RUoX43ZfxumE4vdxWIciKyF1i6zIV8euepSoqY64sLXFIVYtr9qEluCp2n7mVoZi4arFXLJoXT+fJdTka94oRoYDP2V1/XJb0SZ7QlrAsxZeiaHjiI0vQDI7h47ArECOO39R/pzjRULMMHVVrEWLEwHqELWyXcFQgxN12aavPckpL0NxdymjwDUtyc2NJwE2CKYu/OGn+1fBko5aFfDRwwSiBRURbgYPpcWNDZgxH+Irj6lO/pVMZFHdZliW5VY1ecammJeEVY2+JlnZqOD5lUf75OeU/BMd9gGe4J8IKOuYxbkAwnSY+vsigRRpPRkemNywV71CY/HGCzUyPJVV+WHLeJdmMG0vqvXC0OydZctMuqdCOx+lsj6PKcHTgjsRBWV9A/6dR7giXCmxoTdjTEfTKe90UR2amyg8qXGU0qVZO0JJ6Hxs2sCSWr5G5QmlJlIH6YSyVQ7uuRwJoqbgh6M6Ue+hJ0s6Nsp+LvJ5Xr3l+PKsFVcEPMz9Pk4ka0mzPKz9fjaug7Xw9DoLRhY8SGKxPkhE09eKcjItJX5KoYQI/Hf3cn02gzh6SRDf84jzL8/T4thVyl+zwTnB6gp+Lc15B6j2MXler40FPjKyKx6yQzd3g66/Mlu9VYr3GrSf0xaxGv1+fzusrVFcVjYP19MU7slo1xzVPm7YcsJA155eQpSTpDuKapmmMs6RnP4nNSLWpZWTV3kP2IRaH8fTwTpLuIx753pMgCIIgCIIgCIIgCIIgCIIgCIIgCFv4P/7l0OORoe00AAAAAElFTkSuQmCC')"></div>
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Email Marketing Officer <span class="expand-indicator"></span></div>
+                                            <div class="company">RNIB | London, UK</div>
+                                        </div>
+                                        <div class="duration">November 2014 - November 2015 (Mat. cover)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details"> 
+                                
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Successfully managed the migration of all our communications to a different ESP (Dotmailer to Adestra)</li>
+                                        <li>Marketing Automation implementation especially for lifecycle management of regular donor, achieving a projected 4% improvement in donor retention rate for contactable segments</li>
+                                        <li>Redevelopment of email comms to follow accessibility guidelines.</li>
+                                         
+                                    </ul>
+                                    <div class="skills-chart">
+                                       <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM Strategy
+                                                <div class="skill-tooltip">Full scale CRM program planning & Execution</div>
+                                            </div>
+                                             
+                                             
+                                            <div class="skill-item">
+                                                Donors' stewardship
+                                                <div class="skill-tooltip">Lifecycle management for leads, donors, regular givers</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                CRM Martech Migration
+                                                <div class="skill-tooltip">First instance when I managed a migration between different martech tool, later a common occurrence in my career.</div>
+                                            </div>
+                                            <div class="skill-item">
+                                                Marketing Automation
+                                                <div class="skill-tooltip">Automated campaign orchestration and optimization</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						 <!-- Campaign Manager -->
+                        <div class="job" onclick="toggleJob(this)">
+                            <div class="job-header">
+                               <div class="job-logo" style="background-image: url('https://media.licdn.com/dms/image/v2/D4E0BAQFP0FadWbjfMw/company-logo_200_200/company-logo_200_200/0/1688461203144/gimo_global_interactive_marketing_online_ltd_logo?e=2147483647&v=beta&t=vnSOq51g4_PjZ6kvCl3sa4ILqWa9NFRShoE1_jrZsRc')"></div>
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">Campaign Manager <span class="expand-indicator"></span></div>
+                                            <div class="company">GIMO Ltd. | London, UK</div>
+                                        </div>
+                                        <div class="duration">June 2014 - November 2014</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details">
+                  
+                                
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Ensure cross team and cross brand alignment on campaign best practices, directing cross promotions efforts.</li>
+                                        <li>Email deliverability monitoring and management.</li>
+                                         
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM Best Practices Implementation
+                                                <div class="skill-tooltip">Working across the portfolio of gaming brands to implement best practices</div>
+                                            </div>
+                                            <div class="skill-item">
+                                               Email Deliverability
+                                                <div class="skill-tooltip">Deliverability monitoring, issues prevention and remedial</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+						
+						 <!-- Crm Executive -->
+                        <div class="job" onclick="toggleJob(this)">
+                            <div class="job-header">
+                               <div class="job-logo" style="background-image: url('https://media.licdn.com/dms/image/v2/C4D0BAQGn3__vIGavbw/company-logo_200_200/company-logo_200_200/0/1631310423922?e=1759363200&v=beta&t=rxM5PSa0CBsTuu2mn1OgsWxOaApy30P5CptLjnyovV4')"></div>
+                                <div class="job-info">
+                                    <div class="job-meta">
+                                        <div>
+                                            <div class="job-title">CRM Executive <span class="expand-indicator"></span></div>
+                                            <div class="company">Wisby Ltd. Formerly Hexpress | Croydon, UK</div>
+                                        </div>
+                                        <div class="duration">January 2013 - June 2014</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="job-details"> 
+
+                                
+                                <div class="job-description">
+                                    <ul>
+                                        <li>Email marketing, CRO,  lead generation, PPC, management of customer service representatives</li>
+                                        <li>Product Manager for the Italian localisation of an ecommerce website.</li>
+										<li>3% order success increase for the implementation of standardise customer service routines.</li>
+                                         
+                                    </ul>
+                                    <div class="skills-chart">
+                                        <h5>Top Skills & Responsibilities</h5>
+                                        <div class="skills-grid-compact">
+                                            <div class="skill-item">
+                                                CRM campaign management
+                                                <div class="skill-tooltip">Campaign management</div>
+                                            </div>
+                                            <div class="skill-item">
+                                              Web optimisation
+                                                <div class="skill-tooltip">Acting as product manager for one of the company ecommerce's localisation</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+						
+						
+
+                    </div>
+					
+					
+					
+					
+					
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">Technical Skills & Expertise</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h4>MarTech Platforms</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Braze</span>
+                                    <span class="skill-tag">Silverpop / Acoustic</span>
+                                    <span class="skill-tag">Dotmailer</span>
+                                    <span class="skill-tag">Hubspot</span>
+                                    <span class="skill-tag">Mailchimp</span>
+                                    <span class="skill-tag">Acoustic</span>
+                                    <span class="skill-tag">SALESmanago</span>
+                                    <span class="skill-tag">Contactlab</span>
+									<span class="skill-tag">Campaign monitor</span>
+									<span class="skill-tag">Pure360</span>
+									<span class="skill-tag">MailUp</span>
+									<span class="skill-tag">Adestra</span>
+									 
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Data management, Analytics & Data Visualization</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">PowerBI</span>
+                                    <span class="skill-tag">Looker</span>
+                                    <span class="skill-tag">Google Analytics (GA3, GA4)</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">R/RStudio</span>
+                                    <span class="skill-tag">Amplitude</span>
+									<span class="skill-tag">Appsflyer</span>
+									<span class="skill-tag">Excel</span>
+									<span class="skill-tag">Fivetran</span>
+                                    <span class="skill-tag">CDPs (Hightouch) </span>
+									 <span class="skill-tag">SQL Databases</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>E-commerce, Advertising & CMS</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Shopify</span>
+                                    <span class="skill-tag">Magento</span>
+                                    <span class="skill-tag">WooCommerce</span>
+                                    <span class="skill-tag">Meta Advertising</span>
+                                    <span class="skill-tag">Google Ads</span>
+                                    <span class="skill-tag">LinkedIn Ads</span>
+									<span class="skill-tag">Catalogue management</span>
+									<span class="skill-tag">CRO</span>
+									<span class="skill-tag">AB\Multivariate testing</span>
+									<span class="skill-tag">Joomla</span>
+									<span class="skill-tag">Wordpress</span>
+									<span class="skill-tag">Drupal</span>
+                                    <span class="skill-tag">Hotjar</span>
+									 <span class="skill-tag">Crazyegg</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Technical & Development</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">HTML/CSS</span>
+                                      <span class="skill-tag">Postman</span>
+                                    <span class="skill-tag">API concepts</span>
+                                    <span class="skill-tag">GitHub</span>
+                                    <span class="skill-tag">Agile/Scrum</span>
+									 <span class="skill-tag">R</span>
+                                </div>
+                            </div>
+							<div class="skill-category">
+                                <h4>Other software and tools</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Make</span>
+                                      <span class="skill-tag">Zapier</span>
+                                    <span class="skill-tag">Google Tag Manager</span>
+									<span class="skill-tag">Google Keyword research</span>
+                                    <span class="skill-tag">SemRush</span>
+									<span class="skill-tag">Surveymonkey</span>
+									<span class="skill-tag">Typeform</span>
+									
+									 <span class="skill-tag">Jira</span>
+									 <span class="skill-tag">Asana</span>
+									 <span class="skill-tag">Trello</span>
+									 <span class="skill-tag">Confluence</span>
+									  <span class="skill-tag">Miro</span>
+                                </div>
+                            </div>
+							
+							<div class="skill-category">
+                                <h4>Job related competences</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">KPI definition</span>
+                                      <span class="skill-tag">AB testing & test planning</span>
+                                    <span class="skill-tag">Workshop facilitation</span>
+									<span class="skill-tag">Journey planning</span>
+                                    <span class="skill-tag">Customer Experience Mapping</span>
+                                    <span class="skill-tag">Business case definition</span>
+									 <span class="skill-tag">Stakeholders Management</span>
+									 <span class="skill-tag">Matrix Organisations</span>
+									 <span class="skill-tag">Agile Methodology</span>
+									
+                                </div>
+                            </div>
+							<div class="skill-category">
+                                <h4>AI-powered productivity tools</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Claude</span>
+                                      <span class="skill-tag">ChatGPT</span>
+                                    <span class="skill-tag">Gemini</span>
+									
+									  </div>
+                                </div>
+                        </div>
+                         
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">Languages</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="languages">
+                            <div class="language">
+                                <h4>Italian</h4>
+                                <p><strong>Native</strong></p>
+                            </div>
+                            <div class="language">
+                                <h4>English</h4>
+                                <p><strong>Fluent</strong></p>
+                            </div>
+                            <div class="language">
+                                <h4>Spanish</h4>
+                                <p><strong>Fluent</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">Certifications & Professional Development</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="certifications-grid">
+                            <div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~9KJASRSXPP42/CERTIFICATE_LANDING_PAGE~9KJASRSXPP42.jpeg" alt="Data Science Badge">
+                                     <div class="cert-tooltip">
+                                        Fundamental tools for data analysis
+                                    </div>
+                                </div>
+                                <h4>Data Scientist toolbox</h4>
+                                <p>Johns Hopkins University via Coursera</p>
+                                 <a href="https://coursera.org/share/127a05081cc90d24ddb8cc94e2ce1d4a" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+							<div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~6CJUYKFTPWLT/CERTIFICATE_LANDING_PAGE~6CJUYKFTPWLT.jpeg" alt="Data Science Badge">
+                                     <div class="cert-tooltip">
+                                       Programming fundamentals, R field assignment
+                                    </div>
+                                </div>
+                                <h4>R Programming</h4>
+                                <p>Johns Hopkins University via Coursera</p>
+                                <a href="https://coursera.org/share/07801eede91bb8dbfc50251572a374d1" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://templates.images.credential.net/16722171176440784346699372916351.png" alt="Google Analytics Badge">
+                                    <div class="cert-tooltip">
+                                       GA4 core competences
+                                    </div>
+                                </div>
+                                <h4>Google Analytics Certified</h4>
+                                <p>Google Skillshop</p>
+                                <a href="https://skillshop.credential.net/8d5510ba-6071-46d1-9dbc-f526633eb714#acc.fSXwRWPC" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://images.credly.com/size/680x680/images/389eb3d8-19d9-49f8-b565-c4dda6dba45d/image.png" alt="Braze Badge">
+                                    <div class="cert-tooltip">
+                                       Braze platform usage. 
+                                    </div>
+                                </div>
+                                <h4>Braze Practitioner</h4>
+                                <p>Braze Platform Certification</p>
+                                <a href="https://www.credly.com/badges/754cb252-1128-4ae9-8c26-0474a68c90ac/public_url" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://pluralsight2.imgix.net/achievements/assets/badges/content-completion/courses/development/beginner/enabled-light.f229e9.png" alt="C# Badge">
+                                    <div class="cert-tooltip">
+                                        Object-oriented programming fundamentals
+                                    </div>
+                                </div>
+                                <h4>C# Fundamentals</h4>
+                                <p>PluralSight</p>
+                                <a href="https://app.pluralsight.com/achievements/share/a432df23-ab59-4fcb-a938-9bfb15980474" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://images.credly.com/images/f2573aac-d21c-483d-acda-afaa366b4f51/image.png" alt="SQL Badge">
+                                    <div class="cert-tooltip">
+                                        Hands-on certification on SQL usage to an intermediate level
+                                    </div>
+                                </div>
+                                <h4>Database & SQL</h4>
+                                <p>IBM via Coursera</p>
+                               <a href="https://www.credly.com/badges/20b0d136-ab54-4794-9c9a-31a6d2f7d6c8/public_url" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+							<div class="cert-item">
+                                <div class="cert-badge">
+                                    <img src="https://hubspot-credentials-na1.s3.amazonaws.com/prod/certificates/user/a2c23d3c87804d7b8a2bcad19c2c2674.png" alt="SQL Badge">
+                                    <div class="cert-tooltip">
+                                        Hubspot platform course
+                                    </div>
+                                </div>
+                                <h4>Hubspot Marketing hub</h4>
+                                <p>Hubspot</p>
+                               <a href="https://app-eu1.hubspot.com/academy/achievements/rh32069h/en/1/andrea-castelli/hubspot-marketing-hub-software" target="_blank" class="cert-link-btn">View Certificate</a>
+                            </div>
+						 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">Education</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="job">
+                            <div class="job-header">
+                                <div class="job-title">Bachelor's Degree in Philosophy</div>
+                                <div class="company">Università degli Studi di Milano, 2002-2007</div>
+                                <div class="duration">104/110</div>
+                            </div>
+                            <div class="job-description">
+                                <p><strong>Areas of expertise:</strong> Ethics, Philosophy of Language, Political Philosophy </p>
+                                <button class="expand-btn" onclick="toggleAdditionalDetails('education-details', event)">
+                                     Academic Background Impact
+                                </button>
+                                <div id="education-details" class="additional-details">
+                                    
+                                   
+                                    <h4>Applied Skills</h4>
+                                    <ul>
+                                        <li>Critical thinking and analytical problem-solving</li>
+                                        <li>Complex argument construction and presentation</li>
+                                        <li>Framework development for business decisions</li>
+                                        <li>Cross-cultural communication and stakeholder management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        function toggleSection(element) {
+            const section = element.parentElement;
+            section.classList.toggle('expanded');
+        }
+
+        function toggleJob(jobElement) {
+    if (event.target.closest('.expand-btn')) {
+        return;
+    }
+    
+    // Close all other expanded jobs
+    const allJobs = document.querySelectorAll('.job.expanded');
+    allJobs.forEach(job => {
+        if (job !== jobElement) {
+            job.classList.remove('expanded');
+        }
+    });
+    
+    // Toggle the clicked job
+    jobElement.classList.toggle('expanded');
+}
+
+        function toggleAdditionalDetails(detailsId, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const details = document.getElementById(detailsId);
+            const button = event ? event.target : document.querySelector(`[onclick*="${detailsId}"]`);
+            
+            if (details.classList.contains('show')) {
+                details.classList.remove('show');
+                button.textContent = button.textContent.replace('Hide', 'View');
+            } else {
+                details.classList.add('show');
+                button.textContent = button.textContent.replace('View', 'Hide');
+            }
+        }
+
+        // Initialize - expand the summary section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const summarySection = document.querySelector('.section');
+            summarySection.classList.add('expanded');
+        });
+		
+		let weatherTooltip;
+
+        async function showWeather(element) {
+            if (!weatherTooltip) {
+                weatherTooltip = document.createElement('div');
+                weatherTooltip.className = 'weather-tooltip';
+                document.body.appendChild(weatherTooltip);
+            }
+            
+            try {
+                // Using a free weather API (replace API_KEY with actual key)
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=39.47&lon=-0.37&appid=cd7140193cdf1f1fd0dc9fd2b6ed6639&units=metric `);
+                const data = await response.json();
+                
+                const temp = Math.round(data.main.temp);
+                const description = data.weather[0].description;
+                
+                weatherTooltip.innerHTML = `🌤️ ${temp}°C, ${description}`;
+            } catch (error) {
+                weatherTooltip.innerHTML = '🌤️ Weather unavailable';
+            }
+            
+            const rect = element.getBoundingClientRect();
+            weatherTooltip.style.left = rect.left + 'px';
+            weatherTooltip.style.top = (rect.top - 40) + 'px';
+            weatherTooltip.classList.add('show');
+        }
+
+        function hideWeather() {
+            if (weatherTooltip) {
+                weatherTooltip.classList.remove('show');
+            }
+        }
+		
+		function toggleCaseStudy(caseStudyElement) {
+    event.stopPropagation();
+    caseStudyElement.classList.toggle('expanded');
+}
+    </script>
+	<script>
+// Get the token 
+const urlParams = new URLSearchParams(window.location.search);
+const providedToken = urlParams.get('magicword');
+
+// Your secret token  
+const validToken = 'cv-access-20250907';
+
+if (providedToken === validToken) {
+    // Token is correct - show the CV
+    document.getElementById('cv-content').style.display = 'block';
+} else {
+    // Wrong/missing token - show access denied
+    document.body.innerHTML = `
+        <div style="text-align: center; margin-top: 100px;">
+            <h1>Access Denied</h1>
+            <p>This CV is accessible only to a selected few invitees :)</p>
+        </div>
+    `;
+}
+</script>
+</body>
+</html>
+
+
+
